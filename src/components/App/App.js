@@ -10,7 +10,7 @@ import {
 
 import { getData } from "../../service/getData";
 import { exttractData } from "../../service/utils";
-import Cards from "../Cards/Cards";
+import { CardItem } from "../Cards/CardItem";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="main-image d-flex justify-content-center align-items-center flex-column">
+      <div className="main-image d-flex justify-content-center align-items-center flex-column mb-5">
         <div className="filter"></div>
         <h1 className="display-2 text-center text-white" style={{ zIndex: 2 }}>
           Be Smart
@@ -60,7 +60,17 @@ function App() {
         ""
       )}
 
-      {books.length > 0 && loading === false ? <Cards books={books} /> : ""}
+      <div className="container">
+        <div className="w-100 h-100 row">
+          {books.length > 0 && loading === false
+            ? books.map((book) => (
+                <div className="col-lg-4 mb-3" key={book.id}>
+                  <CardItem book={book} />
+                </div>
+              ))
+            : ""}
+        </div>
+      </div>
     </div>
   );
 }
