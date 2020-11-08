@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-
 import {
   InputGroup,
   Input,
@@ -8,17 +7,23 @@ import {
   Button,
   Spinner
 } from "reactstrap";
+
 import { getData } from "../../service/getData";
+import { exttractData } from "../../service/utils";
+import Cards from "../Cards/Cards";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(false);
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
     setLoading(true);
-    getData(query).then((data) => setBooks(data));
-    console.log(books);
+    getData(query).then((data) => {
+      const books = data.items.map((book) => exttractData(book));
+      setBooks(books);
+    });
+    setLoading(false);
   };
 
   return (
@@ -46,6 +51,16 @@ function App() {
           </InputGroup>
         </div>
       </div>
+
+      {loading ? (
+        <div className="d-flex justify-content-center mt-3">
+          <Spinner style={{ width: "3rem", height: "3rem" }} />
+        </div>
+      ) : (
+        ""
+      )}
+
+      {books.length > 0 && loading === false ? <Cards books={books} /> : ""}
     </div>
   );
 }
