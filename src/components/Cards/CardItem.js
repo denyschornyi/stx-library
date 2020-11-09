@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import "./Cards.css";
 
-import { Card, CardTitle, CardImg, CardBody, Button, Modal } from "reactstrap";
+import {
+  Card,
+  CardTitle,
+  CardImg,
+  CardBody,
+  Button,
+  Modal,
+  CardSubtitle
+} from "reactstrap";
+import TextTruncate from "react-text-truncate";
 
 export function CardItem({ book }) {
   const [modal, setModal] = useState(false);
@@ -29,6 +38,12 @@ export function CardItem({ book }) {
       />
       <CardBody>
         <CardTitle className="card-title">{title}</CardTitle>
+        <TextTruncate
+          line={3}
+          element="p"
+          truncateText="…"
+          text={description}
+        />
         <Button onClick={toggle}>More Info</Button>
       </CardBody>
       <Modal isOpen={modal} toggle={toggle}>

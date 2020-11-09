@@ -5,7 +5,8 @@ import {
   Input,
   InputGroupAddon,
   Button,
-  Spinner
+  Spinner,
+  Fade
 } from "reactstrap";
 
 import { getData } from "../../service/getData";
@@ -17,6 +18,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchBy, setSearchBy] = useState("intitle");
+  const [fadeIn, setFadeIn] = useState(true);
 
   const handleSubmit = () => {
     setLoading(true);
@@ -38,9 +40,9 @@ function App() {
           Google Books
         </p>
         <div style={{ width: "60%", zIndex: 2 }}>
-          <InputGroup size="lg" className="mb-3">
+          <InputGroup size="lg">
             <Input
-              placeholder="Book Search"
+              placeholder="Find your book"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -52,13 +54,13 @@ function App() {
                 setSearchBy(value);
               }}
             >
-              <option value="intitle">title</option>
-              <option value="inauthor">author</option>
-              <option value="inpublisher">publisher</option>
+              <option value="intitle">Title</option>
+              <option value="inauthor">Author</option>
+              <option value="inpublisher">Publisher</option>
             </Input>
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={handleSubmit}>
-                <i className="fas fa-search"></i>
+                Search
               </Button>
             </InputGroupAddon>
           </InputGroup>
