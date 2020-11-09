@@ -16,10 +16,11 @@ function App() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchBy, setSearchBy] = useState("intitle");
 
   const handleSubmit = () => {
     setLoading(true);
-    getData(query).then((data) => {
+    getData(query, searchBy).then((data) => {
       const books = data.items.map((book) => exttractData(book));
       setBooks(books);
     });
@@ -43,6 +44,18 @@ function App() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
+            <Input
+              type="select"
+              value={searchBy}
+              onChange={(e) => {
+                const value = e.currentTarget.value;
+                setSearchBy(value);
+              }}
+            >
+              <option value="intitle">title</option>
+              <option value="inauthor">author</option>
+              <option value="inpublisher">publisher</option>
+            </Input>
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={handleSubmit}>
                 <i className="fas fa-search"></i>
