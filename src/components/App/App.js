@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import {
-  InputGroup,
-  Input,
-  InputGroupAddon,
-  Button,
-  Spinner,
-  Form
-} from "reactstrap";
+import { Input, Button, Spinner, Form } from "reactstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import { getData } from "../../service/getData";
 import { exttractData } from "../../service/utils";
@@ -21,16 +16,21 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    getData(query, searchBy).then((data) => {
-      const books = data.items.map((book) => exttractData(book));
-      setBooks(books);
-    });
-    setLoading(false);
+    if (query) {
+      setLoading(true);
+      getData(query, searchBy).then((data) => {
+        const books = data.items.map((book) => exttractData(book));
+        setBooks(books);
+      });
+      setLoading(false);
+    } else {
+      toast.error("Please make your request");
+    }
   };
 
   return (
     <div className="App">
+      <ToastContainer />
       <div className="main-image d-flex justify-content-center align-items-center flex-column mb-5">
         <div className="filter"></div>
         <h1 className="display-2 text-center text-white" style={{ zIndex: 2 }}>
