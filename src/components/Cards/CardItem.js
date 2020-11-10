@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import "./Cards.css";
 
-import {
-  Card,
-  CardTitle,
-  CardImg,
-  CardBody,
-  Button,
-  Modal,
-  CardSubtitle
-} from "reactstrap";
+import { Card, CardImg, CardBody, Button, Modal } from "reactstrap";
 import TextTruncate from "react-text-truncate";
 
 export function CardItem({ book }) {

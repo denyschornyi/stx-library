@@ -19,8 +19,17 @@ function App() {
     if (query) {
       setLoading(true);
       getData(query, searchBy).then((data) => {
-        const books = data.items.map((book) => exttractData(book));
-        setBooks(books);
+        if (data.totalItems > 0) {
+          const books = data.items.map((book) => exttractData(book));
+          setBooks(books);
+        } else {
+          toast.warning(
+            `We are so sorry, nothing was found.  Please try another book`,
+            {
+              pauseOnHover: false
+            }
+          );
+        }
       });
       setLoading(false);
     } else {
