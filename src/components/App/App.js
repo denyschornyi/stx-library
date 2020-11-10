@@ -39,15 +39,17 @@ function App() {
         <p className=" text-center text-white mb-3" style={{ zIndex: 2 }}>
           Google Books
         </p>
-        <div style={{ width: "60%", zIndex: 2 }}>
+        <div className="form-wrapper">
           <Form onSubmit={(e) => handleSubmit(e)}>
-            <InputGroup size="lg">
+            <div className="d-md-flex flex-lg-row flex-md-row flex-sm-column input-buttons-group">
               <Input
+                className="mr-lg-3"
                 placeholder="Find your book"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
               <Input
+                className="mr-lg-3"
                 type="select"
                 value={searchBy}
                 onChange={(e) => {
@@ -59,12 +61,12 @@ function App() {
                 <option value="inauthor">Author</option>
                 <option value="inpublisher">Publisher</option>
               </Input>
-              <InputGroupAddon addonType="append">
+              <div className="button-wrapper">
                 <Button color="secondary" onClick={handleSubmit}>
                   Search
                 </Button>
-              </InputGroupAddon>
-            </InputGroup>
+              </div>
+            </div>
           </Form>
         </div>
       </div>
