@@ -16,8 +16,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (query) {
-      setLoading(true);
       getData(query, searchBy).then((data) => {
         if (data.totalItems > 0) {
           const books = data.items.map((book) => exttractData(book));
@@ -33,13 +33,15 @@ function App() {
       });
       setLoading(false);
     } else {
-      toast.error("Please make your request");
+      toast.error("Please make your request", {
+        pauseOnHover: false
+      });
+      setLoading(false);
     }
   };
 
   return (
     <div className="App">
-      <ToastContainer />
       <div className="main-image d-flex justify-content-center align-items-center flex-column mb-5">
         <div className="filter"></div>
         <h1 className="display-2 text-center text-white" style={{ zIndex: 2 }}>
@@ -99,6 +101,8 @@ function App() {
             : ""}
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }
