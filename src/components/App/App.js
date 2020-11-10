@@ -3,10 +3,12 @@ import "./App.css";
 import { Input, Button, Spinner, Form } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import { getData } from "../../service/getData";
 import { exttractData } from "../../service/utils";
 import { CardItem } from "../Cards/CardItem";
+import { Loader } from "../Loader/Loader";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -38,6 +40,10 @@ function App() {
       });
       setLoading(false);
     }
+  };
+
+  const fetchBooks = () => {
+    console.log("yoi");
   };
 
   return (
@@ -89,18 +95,26 @@ function App() {
       ) : (
         ""
       )}
-
-      <div className="container">
-        <div className="w-100 h-100 row">
-          {books.length > 0 && loading === false
-            ? books.map((book) => (
+      {books.length > 0 && loading === false ? (
+        <div className="container">
+          <InfiniteScroll
+            dataLength={books.length}
+            next={fetchBooks}
+            hasMore={true}
+            loader={<Loader />}
+          >
+            <div className="w-100 h-100 row">
+              {books.map((book) => (
                 <div className="col-lg-4 mb-3" key={book.id}>
                   <CardItem book={book} />
                 </div>
-              ))
-            : ""}
+              ))}
+            </div>
+          </InfiniteScroll>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
 
       <ToastContainer />
     </div>
