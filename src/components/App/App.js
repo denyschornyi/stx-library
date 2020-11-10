@@ -15,6 +15,8 @@ function App() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchBy, setSearchBy] = useState("intitle");
+  const [startIndex, setStartIndex] = useState(0);
+  const [hasMoreItem, setHasMoreItem] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,10 +42,21 @@ function App() {
       });
       setLoading(false);
     }
+    setHasMoreItem(true);
   };
 
   const fetchBooks = () => {
-    console.log("yoi");
+    setStartIndex(startIndex + 10);
+    getData(query, searchBy, startIndex + 10).then((data) => {
+      if (data.items) {
+        let newBooks = data.items.map((book) => {
+          return exttractData(book);
+        });
+        setBooks([...books, ...newBooks]);
+      } else {
+        setHasMoreItem(false);
+      }
+    });
   };
 
   return (
@@ -100,8 +113,13 @@ function App() {
           <InfiniteScroll
             dataLength={books.length}
             next={fetchBooks}
-            hasMore={true}
+            hasMore={hasMoreItem}
             loader={<Loader />}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>No more results. Thank you</b>
+              </p>
+            }
           >
             <div className="w-100 h-100 row">
               {books.map((book) => (

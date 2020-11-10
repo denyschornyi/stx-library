@@ -1,11 +1,7 @@
-export const getData = async (
-  query,
-  searchBy = "intitle",
-  maxResults = 10,
-  startIndex = 1
-) => {
+export const getData = async (query, searchBy = "intitle", startIndex = 0) => {
+  console.log(startIndex);
   const res = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${query}+${searchBy}&maxResults=${maxResults}&startIndex=${startIndex}`
+    `https://www.googleapis.com/books/v1/volumes?q=${query}+${searchBy}&maxResults=10&startIndex=${startIndex}`
   );
   if (!res.ok) {
     throw new Error(`Could not fetch , recived ${res.status}`);
