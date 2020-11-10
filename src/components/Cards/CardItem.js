@@ -37,9 +37,16 @@ export function CardItem({ book }) {
         alt={title}
       />
       <CardBody>
-        <CardTitle className="card-title">
+        <TextTruncate
+          line={1}
+          element="strong"
+          truncateText="…"
+          text={title}
+          className="card-title"
+        />
+        {/* <CardTitle className="card-title">
           <strong>{title} </strong>
-        </CardTitle>
+        </CardTitle> */}
         <TextTruncate
           line={3}
           element="p"

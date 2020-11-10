@@ -6,7 +6,7 @@ import {
   InputGroupAddon,
   Button,
   Spinner,
-  Fade
+  Form
 } from "reactstrap";
 
 import { getData } from "../../service/getData";
@@ -18,9 +18,9 @@ function App() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchBy, setSearchBy] = useState("intitle");
-  const [fadeIn, setFadeIn] = useState(true);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
     getData(query, searchBy).then((data) => {
       const books = data.items.map((book) => exttractData(book));
@@ -40,30 +40,32 @@ function App() {
           Google Books
         </p>
         <div style={{ width: "60%", zIndex: 2 }}>
-          <InputGroup size="lg">
-            <Input
-              placeholder="Find your book"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <Input
-              type="select"
-              value={searchBy}
-              onChange={(e) => {
-                const value = e.currentTarget.value;
-                setSearchBy(value);
-              }}
-            >
-              <option value="intitle">Title</option>
-              <option value="inauthor">Author</option>
-              <option value="inpublisher">Publisher</option>
-            </Input>
-            <InputGroupAddon addonType="append">
-              <Button color="secondary" onClick={handleSubmit}>
-                Search
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
+          <Form onSubmit={(e) => handleSubmit(e)}>
+            <InputGroup size="lg">
+              <Input
+                placeholder="Find your book"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <Input
+                type="select"
+                value={searchBy}
+                onChange={(e) => {
+                  const value = e.currentTarget.value;
+                  setSearchBy(value);
+                }}
+              >
+                <option value="intitle">Title</option>
+                <option value="inauthor">Author</option>
+                <option value="inpublisher">Publisher</option>
+              </Input>
+              <InputGroupAddon addonType="append">
+                <Button color="secondary" onClick={handleSubmit}>
+                  Search
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </Form>
         </div>
       </div>
 
