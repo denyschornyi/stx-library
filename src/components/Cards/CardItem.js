@@ -5,7 +5,6 @@ import { Card, CardImg, CardBody, Button, Modal } from "reactstrap";
 import TextTruncate from "react-text-truncate";
 
 export function CardItem({ book }) {
-  console.log(book);
   const [modal, setModal] = useState(false);
 
   const {
@@ -80,6 +79,7 @@ export function CardItem({ book }) {
               color="default"
               type="button"
               target="_blank"
+              rel="noreferrer"
             >
               Info Link
             </a>
