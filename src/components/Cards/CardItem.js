@@ -79,7 +79,6 @@ export function CardItem({ book }) {
               color="default"
               type="button"
               target="_blank"
-              rel="noopener noreferrer"
             >
               Info Link
             </a>

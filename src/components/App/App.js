@@ -101,13 +101,8 @@ function App() {
         </div>
       </div>
 
-      {loading ? (
-        <div className="d-flex justify-content-center mt-3">
-          <Spinner style={{ width: "3rem", height: "3rem" }} />
-        </div>
-      ) : (
-        ""
-      )}
+      {loading ? <Loader /> : ""}
+
       {books.length > 0 && loading === false ? (
         <div className="container">
           <InfiniteScroll
