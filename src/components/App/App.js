@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Input, Button, Spinner, Form } from "reactstrap";
+import { Input, Button, Form } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import InfiniteScroll from "react-infinite-scroll-component";

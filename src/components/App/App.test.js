@@ -1,12 +1,18 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import ReactDOM from "react-dom";
+import { shallow } from "enzyme";
 import App from "./App";
 
-describe("App", () => {
-  it("render App component", () => {
-    render(<App />);
-    screen.debug();
-    expect(screen.getByText(/be smart/i)).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toBeInTheDocument();
-  });
+it("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
+
+it("renders without crashing", () => {
+  shallow(<App />);
+});
+// it("contain form", () => {
+//   const app = shallow(<App />);
+//   expect(app.containsMatchingElement([<div></div>])).toEqual(true);
+// });
