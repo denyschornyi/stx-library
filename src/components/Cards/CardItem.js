@@ -30,15 +30,12 @@ export function CardItem({ book }) {
       />
       <CardBody>
         <TextTruncate
-          line={1}
+          line={3}
           element="strong"
           truncateText="…"
           text={title}
           className="card-title"
         />
-        {/* <CardTitle className="card-title">
-          <strong>{title} </strong>
-        </CardTitle> */}
         <TextTruncate
           line={3}
           element="p"

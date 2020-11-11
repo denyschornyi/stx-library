@@ -116,8 +116,8 @@ function App() {
             hasMore={hasMoreItem}
             loader={<Loader />}
             endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>No more results. Thank you</b>
+              <p className="text-center">
+                <b>No more results.</b>
               </p>
             }
           >
