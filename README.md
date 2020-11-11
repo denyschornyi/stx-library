@@ -17,7 +17,6 @@
 - [React-Toastify](https://www.npmjs.com/package/react-toastify)
 - [React-Truncate-Text](https://www.npmjs.com/package/react-text-truncate)
 - [React-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component)
-- [React-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component)
 - [Jest](https://jestjs.io/)
 - [Enzyme](https://www.npmjs.com/package/enzyme)
 - [Firebase](https://firebase.google.com/)
