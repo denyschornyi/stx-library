@@ -10,7 +10,7 @@ import { HeaderForm } from "../HeaderForm/HeaderForm";
 import { CardItem } from "../Cards/CardItem";
 import { Loader } from "../Loader/Loader";
 
-function App() {
+export function App() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -68,6 +68,7 @@ function App() {
         searchBy={searchBy}
         setSearchBy={setSearchBy}
       />
+
       {loading ? <Loader /> : ""}
 
       {books.length > 0 && loading === false ? (
@@ -100,5 +101,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
