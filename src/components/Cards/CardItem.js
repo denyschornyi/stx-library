@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import "./Cards.css";
+import "./cards.css";
 
 import { Card, CardImg, CardBody, Button, Modal } from "reactstrap";
 import TextTruncate from "react-text-truncate";
 
 export function CardItem({ book }) {
+  console.log(book);
   const [modal, setModal] = useState(false);
 
   const {

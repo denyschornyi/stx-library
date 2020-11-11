@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Button, Form } from "reactstrap";
 
-import "./HeaderForm.css";
+import "./headerForm.css";
 
 export function HeaderForm({
   handleSubmit,
